@@ -1,7 +1,10 @@
 package com.example.week1.products;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.example.week1.catalogs.Catalog;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
+import java.util.Optional;
 
 @Entity
 public class Product{
@@ -20,10 +23,17 @@ public class Product{
 	private int stock;
 	private String ratingScore;
 
+//		@NotFound(
+//			action = NotFoundAction.IGNORE)
+	@ManyToOne
+	@JoinColumn(name = "catalog_catalogId")
+	@JsonBackReference
+	private Catalog catalog;
+
 	public Product(){ //for serialization
 	}
 
-	public Product(int id, String image, String originalPrice, String price, String review, String name, String discount, boolean addToCart, String location, String productUrl, int stock, String ratingScore) {
+	public Product(int id, String image, String originalPrice, String price, String review, String name, String discount, boolean addToCart, String location, String productUrl, int stock, String ratingScore, Catalog catalog) {
 		this.id = id;
 		this.image = image;
 		this.originalPrice = originalPrice;
@@ -36,8 +46,16 @@ public class Product{
 		this.productUrl = productUrl;
 		this.stock = stock;
 		this.ratingScore = ratingScore;
+		this.catalog = catalog;
 	}
 
+	public Catalog getCatalog() {
+		return catalog;
+	}
+
+	public void setCatalog(Catalog catalog) {
+		this.catalog = catalog;
+	}
 
 	public void setImage(String image){
 		this.image = image;

@@ -14,3 +14,25 @@ Product Data Example
                 "stock": 10,
                 "addToCart": false,
 }
+
+Catalog Data Example
+
+{
+"name":"Adidas NMD",
+"catalogId": 1234,
+"filter":"popular",
+"productList":[{
+                               "name": "TOP รองเท้าAdidas NMD R1 Japan  Size40-45 สินค้าพร้อมกล่อง อุปกรณ์ครบจัดส่งฟรี มีบริการเก็บเงินปลายทาง",
+                               "id": 3434831555,
+                               "productUrl": "/products/3434831555.html",
+                               "image": "image1.jpg",
+                               "originalPrice": "15000.00",
+                               "price": "9900.00",
+                               "discount": "-34%",
+                               "ratingScore": "0",
+                               "review": "2",
+                               "location": "Bangkok",
+                               "stock": 10,
+                               "addToCart": false,
+               }]
+}
