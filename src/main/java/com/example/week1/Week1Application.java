@@ -94,9 +94,9 @@ public class Week1Application {
 		Product product2 = productRepository.findById(2).get();
 		Product product3 = productRepository.findById(3).get();
 
-		product1.setCatalog(catalog1);
-		product2.setCatalog(catalog1);
-		product3.setCatalog(catalog1);
+		product1.setCatalog(Arrays.asList(new Catalog[]{catalog1}));
+		product2.setCatalog(Arrays.asList(new Catalog[]{catalog1}));
+		product3.setCatalog(Arrays.asList(new Catalog[]{catalog1}));
 
 		catalog1.setProductList(Arrays.asList(new Product[]{product1,product2,product3}));
 

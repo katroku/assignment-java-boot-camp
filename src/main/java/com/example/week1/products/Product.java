@@ -4,6 +4,7 @@ import com.example.week1.catalogs.Catalog;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Optional;
 
 @Entity
@@ -25,15 +26,14 @@ public class Product{
 
 //		@NotFound(
 //			action = NotFoundAction.IGNORE)
-	@ManyToOne
-	@JoinColumn(name = "catalog_catalogId")
+	@ManyToMany(mappedBy = "productList")
 	@JsonBackReference
-	private Catalog catalog;
+	private List<Catalog> catalog;
 
 	public Product(){ //for serialization
 	}
 
-	public Product(int id, String image, String originalPrice, String price, String review, String name, String discount, boolean addToCart, String location, String productUrl, int stock, String ratingScore, Catalog catalog) {
+	public Product(int id, String image, String originalPrice, String price, String review, String name, String discount, boolean addToCart, String location, String productUrl, int stock, String ratingScore, List<Catalog> catalog) {
 		this.id = id;
 		this.image = image;
 		this.originalPrice = originalPrice;
@@ -49,11 +49,11 @@ public class Product{
 		this.catalog = catalog;
 	}
 
-	public Catalog getCatalog() {
+	public List<Catalog> getCatalog() {
 		return catalog;
 	}
 
-	public void setCatalog(Catalog catalog) {
+	public void setCatalog(List<Catalog> catalog) {
 		this.catalog = catalog;
 	}
 

@@ -12,8 +12,11 @@ public class Catalog{
 	private int catalogId;
 	private String filter;
 	private String name;
-	@OneToMany(mappedBy = "catalog", fetch= FetchType.EAGER)
-	@Column(nullable = true)
+	@ManyToMany
+	@JoinTable(
+			name = "catalog_product",
+			joinColumns = @JoinColumn(name = "catalog_catalogId"),
+			inverseJoinColumns = @JoinColumn(name = "product_id"))
 	@JsonManagedReference
 	private List<Product> productList;
 
