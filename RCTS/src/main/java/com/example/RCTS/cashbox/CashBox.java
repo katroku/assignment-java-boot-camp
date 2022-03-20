@@ -5,11 +5,9 @@ import com.example.RCTS.branch.Branch;
 import com.example.RCTS.cash.Cash;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jdk.jshell.Snippet;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,19 +25,22 @@ public class CashBox {
 	//@JsonBackReference
 	@JsonManagedReference
 	private Geo location;
-//	private HashMap<String, Object[]> status;
+
+	@OneToMany(mappedBy = "cashBox")
+	@JsonManagedReference
+	private List<CashBoxStatus> statusList;
 	private int timeCreated;
 
 	public CashBox() { //for serialization
 	}
 
-	public CashBox(int id, List<Cash> cashList, Branch sender, Branch recipient, Geo location, HashMap<String, Object[]> status, int timeCreated) {
+	public CashBox(int id, List<Cash> cashList, Branch sender, Branch recipient, Geo location, List<CashBoxStatus> statusList, int timeCreated) {
 		this.id = id;
 //		this.cashList = cashList;
 //		this.sender = sender;
 //		this.recipient = recipient;
 		this.location = location;
-//		this.status = status;
+		this.statusList = statusList;
 		this.timeCreated = timeCreated;
 	}
 
@@ -83,14 +84,17 @@ public class CashBox {
 		this.location = location;
 	}
 
-//	public HashMap<String, Object[]> getStatus() {
-//		return status;
-//	}
-//
-//	public void setStatus(HashMap<String, Object[]> status) {
-//		this.status = status;
-//	}
+	public List<CashBoxStatus> getStatusList() {
+		return statusList;
+	}
 
+	public void setStatusList(List<CashBoxStatus> status) {
+		this.statusList = status;
+	}
+
+	public void updateStatus(CashBoxStatus status) {
+		this.statusList.add(status);
+	}
 	public int getTimeCreated() {
 		return timeCreated;
 	}

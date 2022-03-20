@@ -1,6 +1,7 @@
 package com.example.RCTS.address;
 
 import com.example.RCTS.cashbox.CashBox;
+import com.example.RCTS.cashbox.CashBoxStatus;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -16,17 +17,19 @@ public class Geo {
 	private int id;
 	private double[] coordinates = new double[2];// contains (latitude,longtidue)
 	@OneToMany(mappedBy = "location")
-	//@JsonManagedReference
 	@JsonBackReference //eventhough cashBox is null, json can be displayed for cashbox
 	private List<CashBox> cashBox;
+
+	@OneToMany(mappedBy = "location")
+	@JsonBackReference
+	private List<CashBoxStatus> cashBoxStatusList;
 
 	public Geo() {
 	}
 
-	public Geo(int id, double[] coordinates, List<CashBox> cashBox) {
+	public Geo(int id, double[] coordinates) {
 		this.id = id;
 		this.coordinates = coordinates;
-		this.cashBox = cashBox;
 	}
 
 	public int getId() {
