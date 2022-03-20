@@ -1,4 +1,4 @@
-package com.example.hello;
+package com.example.RCTS;
 //to config rest api here
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
