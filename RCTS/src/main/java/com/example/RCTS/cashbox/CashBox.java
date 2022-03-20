@@ -3,6 +3,8 @@ package com.example.RCTS.cashbox;
 import com.example.RCTS.address.Geo;
 import com.example.RCTS.branch.Branch;
 import com.example.RCTS.cash.Cash;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,6 +24,8 @@ public class CashBox {
 
 	@ManyToOne //at any point in time a box should have one location but a location can have many boxes
 	@JoinColumn(name = "geo_id", nullable = true)
+	//@JsonBackReference
+	@JsonManagedReference
 	private Geo location;
 //	private HashMap<String, Object[]> status;
 	private int timeCreated;

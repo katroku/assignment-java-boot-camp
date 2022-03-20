@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 
 @SpringBootApplication
 public class RctsApplication {
@@ -23,7 +24,11 @@ public class RctsApplication {
 	@PostConstruct //after init all beans
 	public void initializeData(){
 
-		Geo location = new Geo();
+		double[] latLong = new double[]{123.4, 123.5};
+		List<CashBox> cashBoxList = null;
+		Geo location = new Geo(1,latLong , cashBoxList);
+		System.out.println(location.getCoordinates()[0]);
+        System.out.println(location.getCoordinates()[1]);
 		geoRepository.save(location);
 		CashBox cashBoxTest = new CashBox();
 		cashBoxTest.setLocation(location);
