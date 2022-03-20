@@ -1,27 +1,21 @@
 package com.example.RCTS.address;
 
+import com.example.RCTS.cashbox.CashBox;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
+
+@Entity
 public class Geo {
-	private float lng;
-	private float lat;
 
-	public Geo(float lng, float lat) {
-		this.lng = lng;
-		this.lat = lat;
-	}
+	@Id
+	private int id;
+	private float[] coordinates = new float[2];// contains (latitude,longtidue)
+	@OneToMany(mappedBy = "location")
+	private List<CashBox> cashBox;
 
-	public float getLng() {
-		return lng;
-	}
-
-	public void setLng(float lng) {
-		this.lng = lng;
-	}
-
-	public float getLat() {
-		return lat;
-	}
-
-	public void setLat(float lat) {
-		this.lat = lat;
+	public Geo() {
 	}
 }

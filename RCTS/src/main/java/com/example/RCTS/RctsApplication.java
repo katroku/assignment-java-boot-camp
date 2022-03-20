@@ -1,7 +1,9 @@
 package com.example.RCTS;
 
+import com.example.RCTS.address.Geo;
 import com.example.RCTS.cashbox.CashBox;
 import com.example.RCTS.cashbox.CashBoxRepository;
+import com.example.RCTS.cashbox.GeoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,10 +17,16 @@ public class RctsApplication {
 	@Autowired
 	private CashBoxRepository cashBoxRepository;
 
+	@Autowired
+	private GeoRepository geoRepository;
+
 	@PostConstruct //after init all beans
 	public void initializeData(){
 
+		Geo location = new Geo();
+		geoRepository.save(location);
 		CashBox cashBoxTest = new CashBox();
+		cashBoxTest.setLocation(location);
 		cashBoxRepository.save(cashBoxTest);
 
 	}
