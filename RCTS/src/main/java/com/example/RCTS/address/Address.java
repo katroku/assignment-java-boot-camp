@@ -1,4 +1,4 @@
-package com.example.RCTS.cashbox;
+package com.example.RCTS.address;
 
 public class Address {
 	private String zipcode;

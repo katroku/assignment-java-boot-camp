@@ -1,5 +1,7 @@
 package com.example.RCTS.cashbox;
 
+import com.example.RCTS.address.Address;
+
 import java.util.List;
 
 public class Branch {
