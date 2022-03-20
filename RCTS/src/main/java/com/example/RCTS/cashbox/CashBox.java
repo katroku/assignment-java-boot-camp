@@ -2,6 +2,7 @@ package com.example.RCTS.cashbox;
 
 import com.example.RCTS.address.Geo;
 import com.example.RCTS.branch.Branch;
+import com.example.RCTS.cash.Cash;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
