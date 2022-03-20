@@ -1,24 +1,26 @@
 package com.example.RCTS.cash;
 
+import com.example.RCTS.currency.Currency;
+
 public class Cash {
 
-    private String currency;
+    private Currency currency;
     private float amount;
 
     public Cash() {
 
     }
 
-    public Cash(String currency, float amount) {
+    public Cash(Currency currency, float amount) {
         this.currency = currency;
         this.amount = amount;
     }
 
-    public String getCurrency() {
+    public Currency getCurrency() {
         return currency;
     }
 
-    public void setCurrency(String currency) {
+    public void setCurrency(Currency currency) {
         this.currency = currency;
     }
 
