@@ -18,7 +18,7 @@ class CashBoxRepositoryTest {
     private CashBoxRepository cashBoxRepository;
 
     @Test
-    @DisplayName("input: empty object")
+    @DisplayName("Success Case, input: empty Cash object")
     void findById_with_success() {
         CashBox cashbox = new CashBox();
         cashBoxRepository.save(cashbox);
@@ -27,7 +27,7 @@ class CashBoxRepositoryTest {
     }
 
     @Test
-    @DisplayName("input: none")
+    @DisplayName("Failure Case, input: none")
     void findById_with_failure() {
         Optional<CashBox> result = cashBoxRepository.findById(1234);
         assertFalse(result.isPresent());
