@@ -34,9 +34,6 @@ public class RctsApplication {
 	@PostConstruct //after init all beans
 	public void initializeData(){
 
-		Currency currency = new Currency(1, "YEN", 0.33);
-		currencyRepository.save(currency);
-
 	}
 
 	public static void main(String[] args) {
