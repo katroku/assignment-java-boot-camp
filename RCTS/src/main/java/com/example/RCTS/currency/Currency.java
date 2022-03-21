@@ -16,6 +16,7 @@ public class Currency {
     private int id;
     private String name;
     private double exchangeRateToBaht;
+
     @OneToMany(mappedBy = "currency")
     @JsonManagedReference
     private List<Cash> cashList;
@@ -51,6 +52,14 @@ public class Currency {
 
     public void setExchangeRateToBaht(double exchangeRateToBaht) {
         this.exchangeRateToBaht = exchangeRateToBaht;
+    }
+
+    public List<Cash> getCashList() {
+        return cashList;
+    }
+
+    public void setCashList(List<Cash> cashList) {
+        this.cashList = cashList;
     }
 }
 
