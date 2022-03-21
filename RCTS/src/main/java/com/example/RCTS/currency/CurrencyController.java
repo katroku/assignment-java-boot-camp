@@ -35,6 +35,7 @@ public class CurrencyController {
                     return currencyRepository.save(currency);
                 })
                 .orElseGet(() -> {
+                    newCurrency.setId(id);
                     return currencyRepository.save(newCurrency);
                 });
     }
