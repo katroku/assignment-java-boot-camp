@@ -13,8 +13,14 @@ public class CashBoxController {
     private CashBoxService cashBoxService;
 
     @GetMapping("/cashbox/{id}")
-    public CashBoxResponse getProduct(@PathVariable int id){
+    public CashBoxResponse getCashBox(@PathVariable int id){
         return new CashBoxResponse(cashBoxService.getCashBoxData(id));
+
+    }
+
+    @GetMapping("/cashbox")
+    public CashBoxResponse getAllCashBox(){
+        return new CashBoxResponse(cashBoxService.getAllCashBoxData());
 
     }
 }
