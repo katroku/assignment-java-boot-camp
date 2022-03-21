@@ -1,8 +1,13 @@
 package com.example.RCTS.currency;
 
 
+import com.example.RCTS.cash.Cash;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Currency {
@@ -11,6 +16,9 @@ public class Currency {
     private int id;
     private String name;
     private double exchangeRateToBaht;
+    @OneToMany(mappedBy = "currency")
+    @JsonManagedReference
+    private List<Cash> cashList;
 
     public Currency(int id, String name, double exchangeRateToBaht) {
         this.id = id;
