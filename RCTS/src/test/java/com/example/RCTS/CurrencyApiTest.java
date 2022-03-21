@@ -1,15 +1,13 @@
 package com.example.RCTS;
 
-import com.example.RCTS.address.Geo;
-import com.example.RCTS.cashbox.*;
 import com.example.RCTS.currency.Currency;
 import com.example.RCTS.currency.CurrencyRepository;
+import com.example.RCTS.currency.CurrencyResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-
-import java.util.ArrayList;
+import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -31,12 +29,16 @@ class CurrencyApiTest {
 
         //Act
         //deserialize json to java POJO => done through default constructor in HelloResponse! MUST write explicitly
-        CashBoxResponse result = testRestTemplate.getForObject("/currency/1", CashBoxResponse.class);
+        CurrencyResponse result = testRestTemplate.getForObject("/currency/1", CurrencyResponse.class);
         //Assert
         assertEquals("{\"id\":1,\"name\":\"YEN\",\"exchangeRateToBaht\":3.33}",result.getData());
-        CashBoxResponse result2 = testRestTemplate.getForObject("/currency", CashBoxResponse.class);
+        CurrencyResponse result2 = testRestTemplate.getForObject("/currency", CurrencyResponse.class);
         //Assert
         assertEquals("[{\"id\":1,\"name\":\"YEN\",\"exchangeRateToBaht\":3.33},{\"id\":2,\"name\":\"USD\",\"exchangeRateToBaht\":0.33}]",
                 result2.getData());
+//        Currency currency3 = new Currency(1234, "SPX", 3000.33);
+//        currency2.setName("SPX");
+//        CurrencyResponse result3 = testRestTemplate.postForObject("/currency/2", currency2,CurrencyResponse.class);
+//        assertEquals("",result3.getData());
     }
 }
