@@ -36,7 +36,7 @@ class CurrencyApiTest {
         //Assert
         assertEquals("[{\"id\":1,\"name\":\"YEN\",\"exchangeRateToBaht\":3.33},{\"id\":2,\"name\":\"USD\",\"exchangeRateToBaht\":0.33}]",
                 result2.getData());
-        
+
         Currency currency3 = new Currency(1234, "SPX", 3000.33);
         currency2.setName("SPX");
         testRestTemplate.postForObject("/currency/2", currency2,CurrencyResponse.class);
