@@ -1,12 +1,18 @@
 package com.example.RCTS.currency;
 
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Currency {
 
+    @Id
     private int id;
     private String name;
-    private float exchangeRateToBaht;
+    private double exchangeRateToBaht;
 
-    public Currency(int id, String name, float exchangeRateToBaht) {
+    public Currency(int id, String name, double exchangeRateToBaht) {
         this.id = id;
         this.name = name;
         this.exchangeRateToBaht = exchangeRateToBaht;
@@ -31,11 +37,11 @@ public class Currency {
         this.name = name;
     }
 
-    public float getExchangeRateToBaht() {
+    public double getExchangeRateToBaht() {
         return exchangeRateToBaht;
     }
 
-    public void setExchangeRateToBaht(float exchangeRateToBaht) {
+    public void setExchangeRateToBaht(double exchangeRateToBaht) {
         this.exchangeRateToBaht = exchangeRateToBaht;
     }
 }

@@ -1,6 +1,5 @@
 package com.example.RCTS.currency;
 
-import com.example.RCTS.cashbox.CashBox;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

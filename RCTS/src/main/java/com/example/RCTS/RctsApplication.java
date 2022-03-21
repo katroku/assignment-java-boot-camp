@@ -3,6 +3,8 @@ package com.example.RCTS;
 import com.example.RCTS.address.Geo;
 import com.example.RCTS.cashbox.*;
 import com.example.RCTS.cashbox.GeoRepository;
+import com.example.RCTS.currency.Currency;
+import com.example.RCTS.currency.CurrencyRepository;
 import org.apache.catalina.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -26,9 +28,14 @@ public class RctsApplication {
 	@Autowired
 	private CashBoxStatusRepository cashBoxStatusRepository;
 
+	@Autowired
+	private CurrencyRepository currencyRepository;
+
 	@PostConstruct //after init all beans
 	public void initializeData(){
 
+		Currency currency = new Currency(1, "YEN", 0.33);
+		currencyRepository.save(currency);
 
 	}
 
