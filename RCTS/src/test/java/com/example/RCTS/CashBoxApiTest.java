@@ -1,8 +1,13 @@
 package com.example.RCTS;
 
 import com.example.RCTS.address.Geo;
+import com.example.RCTS.cash.Cash;
+import com.example.RCTS.cash.CashRepository;
 import com.example.RCTS.cashbox.*;
 import com.example.RCTS.cashbox.GeoRepository;
+import com.example.RCTS.currency.Currency;
+import com.example.RCTS.currency.CurrencyRepository;
+import org.h2.store.FileLock;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,6 +35,12 @@ class CashBoxApiTest {
     @Autowired
     private CashBoxStatusRepository cashBoxStatusRepository;
 
+    @Autowired
+    private CashRepository cashRepository;
+
+    @Autowired
+    private CurrencyRepository currencyRepository;
+
     @Test
     void api_with_success() {
 
@@ -40,6 +51,7 @@ class CashBoxApiTest {
         CashBox cashBoxTest = new CashBox();
         cashBoxTest.setLocation(location);
         cashBoxTest.setStatusList(new ArrayList<>());
+        cashBoxTest.setCashList(new ArrayList<>());
         cashBoxRepository.save(cashBoxTest);
 
         // Needs to have cashBox in constructor?? don;t know why
@@ -47,15 +59,23 @@ class CashBoxApiTest {
         cashBoxTest.updateStatus(cashBoxStatus);
         cashBoxStatusRepository.save(cashBoxStatus);
 
+        //save currency so cash can reference
+        Currency currency = new Currency(444, "DOGE", 3000.33);
+        currencyRepository.save(currency);
+        Cash cash = new Cash(1,currency,3000);
+        cash.setCashBox(cashBoxTest);
+        cashBoxTest.updateCashList(cash); // requires addition of cashbox in cash so that the tables can join properly
+        cashRepository.save(cash);
+
         //Act
         //deserialize json to java POJO => done through default constructor in HelloResponse! MUST write explicitly
         CashBoxResponse result = testRestTemplate.getForObject("/cashbox/0", CashBoxResponse.class);
         //Assert
-        assertEquals("{\"id\":0,\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"statusList\":[{\"timestamp\":1.999199802E7,\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"locationStatus\":\"DISPATCHED\"}],\"timeCreated\":0}",
-                result.getData());
+        assertEquals("{\"id\":0,\"cashList\":[{\"id\":1,\"amount\":3000.0}],\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"statusList\":[{\"timestamp\":1.999199802E7,\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"locationStatus\":\"DISPATCHED\"}],\"timeCreated\":0}"
+                ,result.getData());
         CashBoxResponse result2 = testRestTemplate.getForObject("/cashbox", CashBoxResponse.class);
         //Assert
-        assertEquals("[{\"id\":0,\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"statusList\":[{\"timestamp\":1.999199802E7,\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"locationStatus\":\"DISPATCHED\"}],\"timeCreated\":0}]",
-                result2.getData());
+        assertEquals("[{\"id\":0,\"cashList\":[{\"id\":1,\"amount\":3000.0}],\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"statusList\":[{\"timestamp\":1.999199802E7,\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"locationStatus\":\"DISPATCHED\"}],\"timeCreated\":0}]"
+                ,result2.getData());
     }
 }
