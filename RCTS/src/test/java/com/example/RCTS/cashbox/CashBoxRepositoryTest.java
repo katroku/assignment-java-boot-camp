@@ -34,15 +34,15 @@ class CashBoxRepositoryTest {
     }
 
     // There's a problem with findall test
-//    @Test
-//    void findAll_with_success() {
-//        CashBox cashBox = new CashBox();
-//        cashBox.setLocation(null);
-//        cashBox.setStatusList(null);
-//        cashBoxRepository.save(cashBox);
-//        List<CashBox> result = cashBoxRepository.findAll();
-//        assertTrue(result.isEmpty());
-//    }
+    @Test
+    void findAll_with_success() {
+        CashBox cashBox = new CashBox();
+        cashBox.setLocation(null);
+        cashBox.setStatusList(null);
+        cashBoxRepository.save(cashBox);
+        List<CashBox> result = cashBoxRepository.findAll();
+        assertEquals(1,result.size());
+    }
 
 
 }
