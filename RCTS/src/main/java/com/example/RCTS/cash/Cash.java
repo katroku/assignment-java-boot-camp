@@ -1,5 +1,6 @@
 package com.example.RCTS.cash;
 
+import com.example.RCTS.cashbox.CashBox;
 import com.example.RCTS.currency.Currency;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -19,14 +20,29 @@ public class Cash {
     private Currency currency;
     private float amount;
 
+    @ManyToOne
+    @JoinColumn(name = "cashbox_id", nullable = true)
+    @JsonBackReference
+    private CashBox cashBox;
+
     public Cash() {
 
     }
 
-    public Cash(Currency currency, float amount) {
+    public Cash(int id, Currency currency, float amount) {
+        this.id = id;
         this.currency = currency;
         this.amount = amount;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 
     public Currency getCurrency() {
         return currency;
@@ -42,6 +58,14 @@ public class Cash {
 
     public void setAmount(float amount) {
         this.amount = amount;
+    }
+
+    public CashBox getCashBox() {
+        return cashBox;
+    }
+
+    public void setCashBox(CashBox cashBox) {
+        this.cashBox = cashBox;
     }
 
 }

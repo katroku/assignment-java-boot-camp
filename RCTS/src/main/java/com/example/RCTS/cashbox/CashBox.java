@@ -16,7 +16,9 @@ public class CashBox {
 
 	@Id
 	private int id;
-//	private List<Cash> cashList;
+	@OneToMany(mappedBy = "cashBox")
+	@JsonManagedReference
+	private List<Cash> cashList;
 //	private Branch sender;
 //	private Branch recipient;
 
@@ -25,6 +27,7 @@ public class CashBox {
 	//@JsonBackReference
 	@JsonManagedReference
 	private Geo location;
+
 
 	@OneToMany(mappedBy = "cashBox")
 	@JsonManagedReference
@@ -51,15 +54,19 @@ public class CashBox {
 	public void setId(int id) {
 		this.id = id;
 	}
-//
-//	public List<Cash> getCashList() {
-//		return cashList;
-//	}
-//
-//	public void setCashList(List<Cash> cashList) {
-//		this.cashList = cashList;
-//	}
-//
+
+	public List<Cash> getCashList() {
+		return cashList;
+	}
+
+	public void setCashList(List<Cash> cashList) {
+		this.cashList = cashList;
+	}
+
+	public void updateCashList(Cash cash) {
+		this.cashList.add(cash);
+	}
+
 //	public Branch getSender() {
 //		return sender;
 //	}
@@ -95,6 +102,7 @@ public class CashBox {
 	public void updateStatus(CashBoxStatus status) {
 		this.statusList.add(status);
 	}
+
 	public int getTimeCreated() {
 		return timeCreated;
 	}
