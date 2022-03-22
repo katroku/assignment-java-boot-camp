@@ -2,6 +2,8 @@ package com.example.RCTS.currency;
 
 
 import com.example.RCTS.cash.Cash;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.Entity;
@@ -18,7 +20,7 @@ public class Currency {
     private double exchangeRateToBaht;
 
     @OneToMany(mappedBy = "currency")
-    @JsonManagedReference
+    @JsonIgnore
     private List<Cash> cashList;
 
     public Currency(int id, String name, double exchangeRateToBaht) {
