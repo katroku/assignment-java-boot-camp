@@ -17,7 +17,7 @@ public class Cash {
     private int id;
     @ManyToOne
     @JoinColumn(name="currency_id")
-    @JsonManagedReference
+    @JsonBackReference //this will not display currency
     private Currency currency;
     private float amount;
 
