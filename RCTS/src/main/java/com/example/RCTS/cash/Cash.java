@@ -3,7 +3,9 @@ package com.example.RCTS.cash;
 import com.example.RCTS.cashbox.CashBox;
 import com.example.RCTS.currency.Currency;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,13 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
+@JsonIdentityInfo(generator= ObjectIdGenerators.PropertyGenerator.class, property="id", scope=Cash.class)
 public class Cash {
 
     @Id
     private int id;
     @ManyToOne
     @JoinColumn(name="currency_id")
-    @JsonBackReference //this will not display currency
+     //this will not display currency
     private Currency currency;
     private float amount;
 
