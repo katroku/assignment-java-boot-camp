@@ -20,13 +20,12 @@ public class Cash {
     private int id;
     @ManyToOne
     @JoinColumn(name="currency_id")
-     //this will not display currency
     private Currency currency;
     private float amount;
 
     @ManyToOne
     @JoinColumn(name = "cashbox_id", nullable = true)
-    @JsonBackReference
+    @JsonBackReference // this will not display cashbox
     private CashBox cashBox;
 
     public Cash() {
