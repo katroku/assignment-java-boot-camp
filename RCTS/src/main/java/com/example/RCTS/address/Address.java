@@ -1,9 +1,8 @@
 package com.example.RCTS.address;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import com.example.RCTS.branch.Branch;
+
+import javax.persistence.*;
 
 @Entity
 public class Address {
@@ -18,6 +17,9 @@ public class Address {
 	private String street;
 	private String district;
 	private String province;
+	@OneToOne
+	@JoinColumn(name = "branch_id", nullable = true)
+	private Branch branch;
 
 	public Address(){
 

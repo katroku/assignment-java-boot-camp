@@ -1,5 +1,6 @@
 package com.example.RCTS.cash;
 
+import com.example.RCTS.branch.Branch;
 import com.example.RCTS.cashbox.CashBox;
 import com.example.RCTS.currency.Currency;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -27,6 +28,11 @@ public class Cash {
     @JoinColumn(name = "cashbox_id", nullable = true)
     @JsonBackReference // this will not display cashbox
     private CashBox cashBox;
+
+    @ManyToOne
+    @JoinColumn(name = "branch_id", nullable = true)
+    @JsonBackReference // this will not display cashbox
+    private Branch branch;
 
     public Cash() {
 

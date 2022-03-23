@@ -2,14 +2,23 @@ package com.example.RCTS.branch;
 
 import com.example.RCTS.address.Address;
 import com.example.RCTS.cash.Cash;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Branch {
 
+    @Id
     private int id;
     private String name;
+    @OneToOne
+    @JoinColumn(name = "address_id", nullable = true)
     private Address address;
+    @OneToMany
+    @JoinColumn(name = "address_id", nullable = true)
+    @JsonManagedReference
     private List<Cash> totalCashAtBranch;
 
     public Branch() {
