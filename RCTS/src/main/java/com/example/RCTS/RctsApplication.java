@@ -1,8 +1,9 @@
 package com.example.RCTS;
 
+import com.example.RCTS.address.Address;
 import com.example.RCTS.address.Geo;
+import com.example.RCTS.address.GeoRepository;
 import com.example.RCTS.cashbox.*;
-import com.example.RCTS.cashbox.GeoRepository;
 import com.example.RCTS.currency.Currency;
 import com.example.RCTS.currency.CurrencyRepository;
 import org.apache.catalina.Store;
@@ -33,7 +34,6 @@ public class RctsApplication {
 
 	@PostConstruct //after init all beans
 	public void initializeData(){
-
 	}
 
 	public static void main(String[] args) {

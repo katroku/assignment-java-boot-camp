@@ -1,6 +1,5 @@
 package com.example.RCTS.address;
 
-import com.example.RCTS.cash.Cash;
 import com.example.RCTS.cashbox.CashBox;
 import com.example.RCTS.cashbox.CashBoxStatus;
 import com.fasterxml.jackson.annotation.*;
@@ -24,6 +23,10 @@ public class Geo {
 	@OneToMany(mappedBy = "location")
 	@JsonIgnore
 	private List<CashBoxStatus> cashBoxStatusList;
+
+	@OneToMany(mappedBy = "geo")
+	@JsonIgnore
+	private List<Address> addressList;
 
 	public Geo() {
 	}

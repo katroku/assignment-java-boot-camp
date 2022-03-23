@@ -1,10 +1,10 @@
 package com.example.RCTS;
 
 import com.example.RCTS.address.Geo;
+import com.example.RCTS.address.GeoRepository;
 import com.example.RCTS.cash.Cash;
 import com.example.RCTS.cash.CashRepository;
 import com.example.RCTS.cashbox.*;
-import com.example.RCTS.cashbox.GeoRepository;
 import com.example.RCTS.currency.Currency;
 import com.example.RCTS.currency.CurrencyRepository;
 import org.h2.store.FileLock;

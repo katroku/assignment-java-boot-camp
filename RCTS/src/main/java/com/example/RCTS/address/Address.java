@@ -1,22 +1,39 @@
 package com.example.RCTS.address;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Address {
-	private String zipcode;
+	@Id
+	private int id;
+	@ManyToOne
+	@JoinColumn(name = "geo_id", nullable = true)
 	private Geo geo;
+	private String zipcode;
 	private String buildingNumber;
 	private String floor;
 	private String street;
 	private String district;
 	private String province;
 
-	public Address(String zipcode, Geo geo, String buildingNumber, String floor, String street, String district, String province) {
+	public Address(){
+
+	}
+	public Address(int id, String zipcode, Geo geo) {
+		this.id = id;
 		this.zipcode = zipcode;
 		this.geo = geo;
-		this.buildingNumber = buildingNumber;
-		this.floor = floor;
-		this.street = street;
-		this.district = district;
-		this.province = province;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getZipcode() {
