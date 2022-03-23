@@ -1,6 +1,5 @@
-package com.example.RCTS.cashbox;
+package com.example.RCTS.address;
 
-import com.example.RCTS.address.Geo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
