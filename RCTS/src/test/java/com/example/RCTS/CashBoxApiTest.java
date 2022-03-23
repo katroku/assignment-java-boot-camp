@@ -71,11 +71,11 @@ class CashBoxApiTest {
         //deserialize json to java POJO => done through default constructor in HelloResponse! MUST write explicitly
         CashBoxResponse result = testRestTemplate.getForObject("/cashbox/0", CashBoxResponse.class);
         //Assert
-        assertEquals("{\"id\":0,\"cashList\":[{\"id\":1,\"currency\":{\"id\":444,\"name\":\"DOGE\",\"exchangeRateToBaht\":3000.33},\"amount\":3000.0}],\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"statusList\":[{\"timestamp\":1.999199802E7,\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"locationStatus\":\"DISPATCHED\"}],\"timeCreated\":0}"
+        assertEquals("{\"id\":0,\"cashList\":[{\"id\":1,\"currency\":{\"id\":444,\"name\":\"DOGE\",\"exchangeRateToBaht\":3000.33},\"amount\":3000.0}],\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"statusList\":[{\"timestamp\":1.999199802E7,\"location\":1,\"locationStatus\":\"DISPATCHED\"}],\"timeCreated\":0}"
                 ,result.getData());
         CashBoxResponse result2 = testRestTemplate.getForObject("/cashbox", CashBoxResponse.class);
         //Assert
-        assertEquals("[{\"id\":0,\"cashList\":[{\"id\":1,\"currency\":{\"id\":444,\"name\":\"DOGE\",\"exchangeRateToBaht\":3000.33},\"amount\":3000.0}],\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"statusList\":[{\"timestamp\":1.999199802E7,\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"locationStatus\":\"DISPATCHED\"}],\"timeCreated\":0}]"
+        assertEquals("[{\"id\":0,\"cashList\":[{\"id\":1,\"currency\":{\"id\":444,\"name\":\"DOGE\",\"exchangeRateToBaht\":3000.33},\"amount\":3000.0}],\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"statusList\":[{\"timestamp\":1.999199802E7,\"location\":1,\"locationStatus\":\"DISPATCHED\"}],\"timeCreated\":0}]"
                 ,result2.getData());
     }
 }

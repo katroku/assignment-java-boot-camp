@@ -18,8 +18,7 @@ public class CashBoxStatus {
     private double timestamp;
 
     @ManyToOne
-    @JoinColumn(name = "geo_id", nullable = true)
-    @JsonManagedReference
+    @JoinColumn(name = "geo_id", nullable = true) //Geo is going to ignore every linked objects in jSON
     private Geo location;
     private LocationStatus locationStatus;
 

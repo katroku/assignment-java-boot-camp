@@ -24,8 +24,6 @@ public class CashBox {
 
 	@ManyToOne //at any point in time a box should have one location but a location can have many boxes
 	@JoinColumn(name = "geo_id", nullable = true)
-	//@JsonBackReference
-	@JsonManagedReference
 	private Geo location;
 
 
