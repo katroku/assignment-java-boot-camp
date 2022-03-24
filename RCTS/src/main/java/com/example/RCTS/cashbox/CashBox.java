@@ -41,9 +41,9 @@ public class CashBox {
 
 	public CashBox(int id, List<Cash> cashList, Branch sender, Branch recipient, Geo location, List<CashBoxStatus> statusList, int timeCreated) {
 		this.id = id;
-//		this.cashList = cashList;
-//		this.sender = sender;
-//		this.recipient = recipient;
+		this.cashList = cashList;
+		this.sender = sender;
+		this.recipient = recipient;
 		this.location = location;
 		this.statusList = statusList;
 		this.timeCreated = timeCreated;
