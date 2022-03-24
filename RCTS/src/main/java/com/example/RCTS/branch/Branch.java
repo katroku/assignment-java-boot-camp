@@ -2,6 +2,8 @@ package com.example.RCTS.branch;
 
 import com.example.RCTS.address.Address;
 import com.example.RCTS.cash.Cash;
+import com.example.RCTS.cashbox.CashBox;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -17,9 +19,11 @@ public class Branch {
     @JoinColumn(name = "address_id", nullable = true)
     private Address address;
     @OneToMany
-    @JoinColumn(name = "address_id", nullable = true)
     @JsonManagedReference
     private List<Cash> totalCashAtBranch;
+    @OneToMany
+    @JsonIgnore
+    private List<CashBox> cashBoxList;
 
     public Branch() {
     }

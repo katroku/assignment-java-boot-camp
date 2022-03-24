@@ -19,8 +19,12 @@ public class CashBox {
 	@OneToMany(mappedBy = "cashBox")
 	@JsonManagedReference
 	private List<Cash> cashList;
-//	private Branch sender;
-//	private Branch recipient;
+	@ManyToOne
+	@JoinColumn(name = "branch_sender_id", nullable = true)
+	private Branch sender;
+	@ManyToOne
+	@JoinColumn(name = "branch_recipient_id", nullable = true)
+	private Branch recipient;
 
 	@ManyToOne //at any point in time a box should have one location but a location can have many boxes
 	@JoinColumn(name = "geo_id", nullable = true)
@@ -65,21 +69,21 @@ public class CashBox {
 		this.cashList.add(cash);
 	}
 
-//	public Branch getSender() {
-//		return sender;
-//	}
-//
-//	public void setSender(Branch sender) {
-//		this.sender = sender;
-//	}
-//
-//	public Branch getRecipient() {
-//		return recipient;
-//	}
-//
-//	public void setRecipient(Branch recipient) {
-//		this.recipient = recipient;
-//	}
+	public Branch getSender() {
+		return sender;
+	}
+
+	public void setSender(Branch sender) {
+		this.sender = sender;
+	}
+
+	public Branch getRecipient() {
+		return recipient;
+	}
+
+	public void setRecipient(Branch recipient) {
+		this.recipient = recipient;
+	}
 
 	public Geo getLocation() {
 		return location;
