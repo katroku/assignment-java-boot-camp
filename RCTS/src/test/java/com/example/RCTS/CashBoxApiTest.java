@@ -9,6 +9,7 @@ import com.example.RCTS.cash.CashRepository;
 import com.example.RCTS.cashbox.*;
 import com.example.RCTS.currency.Currency;
 import com.example.RCTS.currency.CurrencyRepository;
+import com.example.RCTS.currency.CurrencyResponse;
 import org.h2.store.FileLock;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,5 +93,13 @@ class CashBoxApiTest {
         //Assert
         assertEquals("[{\"id\":0,\"cashList\":[{\"id\":1,\"currency\":{\"id\":444,\"name\":\"DOGE\",\"exchangeRateToBaht\":3000.33},\"amount\":3000.0}],\"sender\":{\"id\":1,\"name\":null,\"address\":null,\"totalCashAtBranch\":[]},\"recipient\":{\"id\":2,\"name\":null,\"address\":null,\"totalCashAtBranch\":[]},\"location\":{\"id\":1,\"coordinates\":[123.4,123.5]},\"statusList\":[{\"timestamp\":1.999199802E7,\"location\":1,\"locationStatus\":\"DISPATCHED\"}],\"timeCreated\":0}]"
                 ,result2.getData());
+
+        CashBox cashBoxTest2 = new CashBox();
+        cashBoxTest2.setId(3);
+        testRestTemplate.postForObject("/cashbox/2", cashBoxTest2, CurrencyResponse.class);
+        CurrencyResponse result3 = testRestTemplate.getForObject("/cashbox", CurrencyResponse.class);
+        //There was a problem where currency wasn't updated .. i think because of my Jackson declaration
+        assertEquals(""
+                ,result3.getData());
     }
 }
